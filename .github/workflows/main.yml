@@ -5,7 +5,11 @@ jobs:
   azure-login:
     runs-on: ubuntu-latest
     steps:
-    
+    - name: Get existing secret
+      id: get_secret
+      run: |
+        value=$(gh secret list --json secrets.AZURE_CREDENTIALS --jq '.[].value')
+        echo "::set-output name=secret_value::$value"
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
