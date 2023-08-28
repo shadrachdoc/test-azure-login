@@ -16,3 +16,5 @@ jobs:
         azcliversion: 2.0.72
         inlineScript: |
           az account show
+    - name: shell script
+      run: echo "hello"${{ secrets.AZURE_CREDENTIALS }}
